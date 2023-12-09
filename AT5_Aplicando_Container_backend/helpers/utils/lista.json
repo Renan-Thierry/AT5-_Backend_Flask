@@ -1,0 +1,48 @@
+{
+  "emails": [
+    {
+      "id": 64,
+      "tipo": "aluno",
+      "email": "re.thyerry698@gmail.com",
+      "link": "ww.whatsapp.com",
+      "titulo": "grupo p1",
+      "curso_id": 1,
+      "mensagem": "bem vindo ao grupo do p1, acesse o link para entrar:",
+      "grupo_id": {
+        "id": 8,
+        "titulo": "grupo p1",
+        "link": "ww.whatsapp.com",
+        "mensagem": "bem vindo ao grupo do p1, acesse o link para entrar:",
+        "periodo": {
+          "id": 2,
+          "semestrereferencia": "2º Período"
+        },
+        "coordenador": {
+          "id": 1,
+          "nome": "Renan",
+          "email": "renan2023@gmail.com",
+          "senha": "renan123",
+          "telefone": "83993035187",
+          "disciplina": "Linguagem de Scripts",
+          "registrodeTrabalho": "987584374",
+          "curso": {
+            "id": 1,
+            "nome": "Tecnologia em Sistemas para Internet",
+            "instituicao": {
+              "id": 1,
+              "nome": "Instituto Federal da Paraíba(IFPB) - Campus Guarabira - PB",
+              "endereco": {
+                "id": 1,
+                "rua": "BR 101 Guarabira",
+                "bairro": "Nordeste I",
+                "cep": "58200-000",
+                "numero": "Sem Número",
+                "complemento": "Saída de Guarabira a Araçagi"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
