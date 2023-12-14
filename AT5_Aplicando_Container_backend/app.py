@@ -2,6 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from flask_restful import Api
 from helpers.database import db, migrate
+import os
 from flask_jwt_extended import JWTManager
 from config import DevelopmentConfig, ProductionConfig, TestingConfig
 from helpers.utils.MRequisicao import api_bp
@@ -17,7 +18,6 @@ from resources.Professor import ProfessorResource, ProfessoresResource
 from resources.Login import UserLogin
 from resources.Mensagem import EmailResource
 from resources.AlunoGrupo import AlunoGrupoResource, AlunosGrupoResource
-from resources.ControleAluno import ControleAlunoResource, controleAlunosResource
 
 
 
@@ -26,7 +26,6 @@ app = Flask(__name__)
 CORS(app)
 
 
-app.config['ENV'] = 'development'  # ou 'production' ou 'testing'
 
 
 # Criado um objeto de configuração com base na variável de ambiente FLASK_ENV
@@ -38,7 +37,9 @@ else:
     app.config.from_object(DevelopmentConfig())
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:123@localhost:5432/models"
+db_uri = f"postgresql://{os.getenv('USER_DB', 'postgres')}:{os.getenv('PASSWORD_DB', '123')}@pgsql:{os.getenv('PORT_DB', '5432')}/{os.getenv('DB_NAME', 'models')}"
+
+app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JWT_SECRET_KEY'] = 'super-secret'  # Chave secreta para geração do token
 jwt = JWTManager(app)
@@ -81,9 +82,6 @@ api.add_resource(ProfessoresResource, '/professor/<int:professor_id>')
 
 api.add_resource(AlunoGrupoResource, '/alunogrupo')
 api.add_resource(AlunosGrupoResource, '/alunogrupo/<int:alunogrupo_id>')
-
-api.add_resource(ControleAlunoResource, '/controleAluno')
-api.add_resource(controleAlunosResource, '/controleAluno/<int:ControleAluno_id>')
 
 api.add_resource(UserLogin, '/login')
 
